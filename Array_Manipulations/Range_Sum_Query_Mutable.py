@@ -41,13 +41,13 @@ def sumRange(l,r):
     r += n
     Sum = 0
     while(l <= r):
-        if(l%2 == 1):
-            Sum += tree[l]
-            l += 1
-        if(r%2 == 0):
+        if(l%2 == 1):                       # Check if l is right child of parent P
+            Sum += tree[l]                  
+            l += 1                          # Add to sum and increment
+        if(r%2 == 0):                       # Check if r is left child of parent P
             Sum += tree[r]
             r -= 1
-        l = math.floor(l/2)
+        l = math.floor(l/2)                 # Move l and r one level up and repeat while l<=r
         r = math.floor(r/2)
     return Sum
 
