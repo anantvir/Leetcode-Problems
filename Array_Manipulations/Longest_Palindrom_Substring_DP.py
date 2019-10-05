@@ -1,10 +1,10 @@
 """Author - Anantvir Singh, Problem Source - Leetcode, Statement - Longest Palindrome Substring"""
 
-"""Using Dynamic Programming. because if already know that aba is palindrome and store it in a matrix/array etc and we get a new string
-s = xabax where i=x and j=x, then we can check if matrix[i+1][j-1] already has a palindrome. If yes then we just need to check
-if s[i]==s[j]. If yes then we have a new longer palindrome from a previously stored result"""
+"""Using Dynamic Programming. because if we already know that aba is palindrome and store it in a matrix/array etc and we get a new substring
+s = xabax where i=x and j=x, then we can check if matrix[i+1][j-1] already has a palindrome or a 1 at index i+1,j-1. 
+If yes then we just need to check if s[i]==s[j]. If both are equal then we have a new longer palindrome from a previously stored result"""
 
-"""Consoder chains of length l=2 to n same as in matrix chain multiplication"""
+"""Consider chains of length l=2 to n same as in matrix chain multiplication"""
 
 s = 'baabbaac'
 
