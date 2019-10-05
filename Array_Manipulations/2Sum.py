@@ -27,15 +27,19 @@ print(Two_Sum(a,-2))
 
 def Two_Sum_Hashtable(a,target):
     dic = dict()
+    a = sorted(a)
     lst = []
     for i in range(len(a)):
         dic[a[i]] = i
     for i in range(len(a)-1):
-        if target - a[i] in dic.keys() and target - a[i] != a[i]:
-            index = dic[target - a[i]]
-            if [i,index] not in lst:
-                lst.append([i,index])
+        if a[i] != a[i-1]:
+            if target - a[i] in dic.keys() and target - a[i] != a[i]:
+                index = dic[target - a[i]]
+                if [i,index] not in lst:
+                    """to remove duplicates. e.g if index [3,4] give sum = 1, then index [4,3] will also give sum 1. To prevent this we set i<index, which means s<e in below link"""
+                    if i < index:               # IMPORTANT >> https://leetcode.com/problems/3sum/discuss/7498/Python-solution-with-detailed-explanation
+                        lst.append([i,index])
     return lst
 
-print(Two_Sum_Hashtable(a,2))
+print(Two_Sum_Hashtable(a,1))
             
