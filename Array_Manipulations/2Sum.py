@@ -41,5 +41,5 @@ def Two_Sum_Hashtable(a,target):
                         lst.append([i,index])
     return lst
 
-print(Two_Sum_Hashtable(a,1))
+print(Two_Sum_Hashtable(a,2))
             

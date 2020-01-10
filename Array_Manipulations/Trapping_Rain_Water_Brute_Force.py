@@ -5,7 +5,7 @@
 
 
 
-arr = [0,1,0,2,1,0,1,3,2,1,2,1,0,0,3]
+arr = [0,1,0,2,1,0,1,3,2,1,2,1]
 
 """Brute Force Approach  --> Very important to understand why Dynamic Programming is needed"""
 def TrapRainWater(arr):                             # arr =  array containing elevation at each point(input array)
