@@ -31,14 +31,15 @@ class LinkedList:
 
 
 ll1 = LinkedList()
-ll1.insert_at_rear(7)
-ll1.insert_at_rear(8)
-#ll1.insert_at_rear(3)
+ll1.insert_at_rear(2)
+ll1.insert_at_rear(4)
+ll1.insert_at_rear(3)
+ll1.insert_at_rear(5)
 
 ll2 = LinkedList()
-ll2.insert_at_rear(7)
-ll2.insert_at_rear(9)
-#ll2.insert_at_rear(4)  
+ll2.insert_at_rear(5)
+ll2.insert_at_rear(6)
+ll2.insert_at_rear(4)  
 
 
 """Just add elements of two lists like normal arithematic addition"""
@@ -51,6 +52,10 @@ def add_lists(ll1,ll2):
         if x == None and y == None and carry != 0:
             new_list.insert_at_rear(carry)
         else:
+            if x == None:               # if one list is finished then its info becomes zero as there is no element to add !
+                x.info = 0
+            if y == None:
+                y.info = 0
             total = x.info + y.info + carry
             carry = math.floor(total/10)
             info = total % 10
