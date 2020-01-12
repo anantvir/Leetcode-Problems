@@ -14,11 +14,11 @@ def Longest_Susbtring(arr):
     return max_length
 
 text = 'qrsrmnmtuvwxab'
-text1 = 'pwwkew'
+text1 = 'pwwkewmnopqwer'
 #print(Longest_Susbtring(list(text)))
 
 
-"""Efficient using Sliding Hashtable. Put element in hashtable, if it already exists then stop and slide the hashtable to next pointer"""
+"""Efficient using Sliding Hashset(Set in python). Put element in Hashset, if it already exists then stop and slide the Hashset to next pointer"""
 def Longest_Substring_Hashed(arr):
     hashset = set()
     max_length = 0
