@@ -14,7 +14,7 @@ def Longest_Palindromic_Substring_DP(s):
     for l in range(2,n+1):
         for i in range(0,n-l+1):
             j = i+l-1
-            if l == 2:
+            if l == 2:          # for length 2 substrings if s[i]=s[i+1] then its a palindrome. Store in table
                 if s[i] == s[j]:
                     table[i][j] = 1
             if table[i+1][j-1] == 1:
