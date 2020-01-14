@@ -1,6 +1,5 @@
 """Naive Solution. Should be done with DP"""
 
-
 import math
 
 s = 'anantvirbaattaabtanana'
@@ -15,7 +14,7 @@ def Longest_Palindromic_Substring_Naive(s):
                     max_length = j-i+1
     return max_length
 
-def Is_Palindrome(s,i,j):       # Regualar function to check for palindrome
+def Is_Palindrome(s,i,j):                   # Regualar function to check for palindrome
     temp_str = s[i:j+1]
     n = len(temp_str)
     for i in range(0,math.floor(n/2)):
