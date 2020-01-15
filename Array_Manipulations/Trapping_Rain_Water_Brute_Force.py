@@ -5,24 +5,20 @@
 
 
 
-arr = [0,1,0,2,1,0,1,3,2,1,2,1]
+arr = [0,1,0,2,1,0,1,3,2,1,2,1,0]
 
 """Brute Force Approach  --> Very important to understand why Dynamic Programming is needed"""
-def TrapRainWater(arr):                             # arr =  array containing elevation at each point(input array)
+def TrapRainWater(height):                             # arr =  array containing elevation at each point(input array)
     total_water_stored = 0
-    for i in range(1,len(arr)-1):       # for i = 2 to n-1
+    for i in range(1,len(height)):
         max_left = 0
-        for l in range(i-1,-1,-1):     # for l = i+1 to n
-            if arr[l] > max_left:
-                max_left = arr[l]
+        for j in range(i,-1,-1):
+            max_left = max(height[j],max_left)
         max_right = 0
-        for r in range(i+1,len(arr)):
-            if arr[r] > max_right:
-                max_right = arr[r]
-        min_height = min(max_left,max_right)
-        if min_height > arr[i]:                     # If height of left or right max height bar > height of index i, then only that index can store water ! --> because its height will be lower than the minimum bar of max height on either left or right i. height of index i < min(max_left,max_right) 
-            water_stored_at_i = min_height - arr[i]
-            total_water_stored += water_stored_at_i
+        for j in range(i,len(height)):
+            max_right = max(height[j],max_right)
+        water_stored_at_this_index = min(max_left,max_right) - height[i]
+        total_water_stored += water_stored_at_this_index
     return total_water_stored
 
 print(TrapRainWater(arr))
