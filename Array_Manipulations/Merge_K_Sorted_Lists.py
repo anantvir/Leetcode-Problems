@@ -1,4 +1,7 @@
-"""Keep 2 pointers to track if any of the 2 lists is finished (While loop). For each pointer, compare which element
+"""
+Use Merge 2 sorted lists k-1 times. For Merge Two Sorted Lists refer to bellow comment
+
+Keep 2 pointers to track if any of the 2 lists is finished (While loop). For each pointer, compare which element
 is greater and append at rear of new list. If one list is finished, just append the other list to the end of new list"""
 
 class LinkedList:
@@ -37,6 +40,13 @@ ll2.insert_at_rear(1)
 ll2.insert_at_rear(3)
 ll2.insert_at_rear(4)
 
+ll3 = LinkedList()
+ll3.insert_at_rear(1)
+ll3.insert_at_rear(2)
+ll3.insert_at_rear(2)
+ll3.insert_at_rear(5)
+
+list_of_lists = [ll1,ll2,ll3]
 
 def Merge_Two_lists(l1,l2):
     new_list = LinkedList()
@@ -61,4 +71,9 @@ def Merge_Two_lists(l1,l2):
             j = j.forward_link
     return new_list
 
-Merge_Two_lists(ll1,ll2)
+def Merge_K_Sorted_Lists(lst):
+    prev = Merge_Two_lists(lst[0],lst[1])       # first merge top 2 lists and store the o/p list in a variable
+    for i in range(2,len(lst)):                 # start from 3rd linked list in array of linked lists i.e index 2 to last linked list, pass previous and current i th Linked List
+        prev = Merge_Two_lists(prev,lst[i])
+
+Merge_K_Sorted_Lists(list_of_lists)
