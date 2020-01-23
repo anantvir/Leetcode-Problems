@@ -4,6 +4,34 @@
 wordDict = ["leet","code","singh","anantvir"]
 s = "leetcodesinghanantvir"
 
+wordDict4 = ["apple","pen"]
+s4 = "applepen"
+
+"""-------------------Most Intuitive Dynamic Programming Approach 4--------------------"""
+# This works same as matrix chain multiplication starting from considering chains of length = 2 until n
+# and checking the substructure of each chain
+
+def Wordbreak4(s,wordDict):
+    n = len(s)
+    m = [[0 for i in range(n)] for i in range(n)]
+    for i in range(n):
+        if s[i] in wordDict:
+            m[i][i] = True
+        else:
+            m[i][i] = False
+    for l in range(2,n+1):
+        for i in range(n-l+1):
+            j = i+l-1
+            if s[i:j+1] in wordDict:
+                m[i][j] = True
+            else:
+                for k in range(i,j):
+                    if m[i][k] == True and m[k+1][j] == True:
+                        m[i][j] = True
+    return m[0][n-1]
+
+print(Wordbreak4(s4,wordDict4))
+
 
 """------------------ Inefficient Approach 1 --------------------"""
 def Wordbreak(s,start):
@@ -49,4 +77,4 @@ def Wordbreak3(s):
 
 
 #print(Wordbreak(s,0))
-print(Wordbreak3(s))
+#print(Wordbreak3(s))
