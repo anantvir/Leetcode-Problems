@@ -101,7 +101,8 @@ class LinkedListCache:
 order in which elements are inserted along with regular O(1) time operations of a normal dict. OrderedDict
 contains following useful methods
 move_to_end(node) --> Moves that node to the end of dictionary/linked list
-popitem(last=False) --> if last = false then pops item in FIFO order, if last=True pops item in LIFO order"""
+popitem(last=False) --> if last = false then pops item in FIFO order(That is what we want. Item which came first in the queue
+must be removed first as well from the queue. This is the rule of LRU cache), if last=True pops item in LIFO order"""
 
 from collections import OrderedDict
 
