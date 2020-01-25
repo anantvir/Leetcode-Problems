@@ -46,7 +46,7 @@ class Solution:
             else:
                 right[j] = max(right[j+1],nums[j])
         output = []
-        for i in range(n-k+1):              # Indices in for loop same as matrix chain multiplication
+        for i in range(n-k+1):                          # Indices in for loop same as matrix chain multiplication
             output.append(max(left[i+k-1],right[i]))    # Indices in for loop same as matrix chain multiplication
         return output
 
