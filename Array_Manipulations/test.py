@@ -1,14 +1,15 @@
-from collections import deque
+import heapq
 
-deq = deque()
+heap = []
 
-deq.append(2)
-deq.append(3)
-deq.append(1)
-deq.append(6)
+heapq.heappush(heap,44)
+heapq.heappush(heap,30)
+heapq.heappush(heap,50)
+heapq.heappush(heap,22)
+heapq.heappush(heap,60)
+heapq.heappush(heap,55)
+heapq.heappush(heap,77)
+heapq.heappush(heap,55)
 
-print(deq)
-deq.pop()
-print(deq)
-deq.appendleft(99)
-print(deq)
+print(heapq.heappop(heap))
+print(heapq.heappop(heap))
