@@ -1,11 +1,5 @@
-import heapq
+import random
 
-heap = []
+a = [2,5,6,7,3,5]
 
-size = len(heap)
-print(size)
-heapq.heappush(heap,3)
-heapq.heappush(heap,7)
-heapq.heappush(heap,1)
-print(heap)
-print(size)
+print(random.choice(a))
