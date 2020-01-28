@@ -17,7 +17,10 @@ class Solution(object):
         return False
 
     """------------------------ Improved Brute Force O(n^2) ------------------------"""
-    """We keep track of minimum value of nums[i], then for a particular value of nums[j], we just need
+    """ Since we only have to return True or False, we can just choose i to be the minimum element
+    found so far before the index j. Then we just need to search beyond j to find a k > j > i such that
+    nums[i] < nums[k] < nums[j] (given condition) !
+    We keep track of minimum value of nums[i], then for a particular value of nums[j], we just need
     to find a nums[k] > nums[i] and less than nums[j]. This can be found by traversing nums beyond j.
     Thus the first for loop in approach 1 vanishes !"""
 
