@@ -1,3 +1,5 @@
+"""Program a game Tic Tac Toe"""
+
 """---------- Approach 1 Brute Force -----------------"""
 
 """Store the move in matrix and 
