@@ -1,6 +1,6 @@
 input_data = ["cat","cats","catsdogcats","dog","dogcatsdog","hippopotamuses","rat","ratcatdogcat"]
 
-input_data = sorted(input_data,key= len)
+input_data = sorted(input_data,key= len)                # Sort by length of each string because a word can be formed by words smaller than itself only
 
 print(input_data)
 
@@ -9,7 +9,8 @@ def Concatenated_Words(input_data):
     for k in range(len(input_data)):
         word_list = input_data[:k]
         word_to_check = input_data[k]
-        if len(word_list) >= 2 and len(word_to_check) > len(word_list[-1]):       
+        if len(word_list) >= 2 and len(word_to_check) > len(word_list[-1]):  # Check that length of word_list must be greater than 2 because concatenated word means composed of minimum 2 words. 
+            # Also check if length of current word i greater than previous word(A word can be formed by words longer than it in length)     
             """---------------- Word Break I Logic, DP Matrix same as matrix chain multiplication -----------------"""
             # Consider chains from len = 2 to n
             n = len(word_to_check)
