@@ -1,3 +1,6 @@
+"""------------------ Approach--> First sort the input list by length of each word and then
+apply WOrd_Break_I DP approach same as matrix chain multiplication --------------------"""
+
 input_data = ["cat","cats","catsdogcats","dog","dogcatsdog","hippopotamuses","rat","ratcatdogcat"]
 
 input_data = sorted(input_data,key= len)                # Sort by length of each string because a word can be formed by words smaller than itself only
