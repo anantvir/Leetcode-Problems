@@ -23,9 +23,9 @@ class AutocompleteSystem(object):
         else:
             self.current_sentence += c                      # append new character to characters entered till now
             curr_search_list = []                           # Temporary list to store strings which have starting characters same as the entered sting
-            len_curr_word = len(self.current_sentence)
+            len_curr_sentence = len(self.current_sentence)
             for key,value in self.data_dict.items():
-                if key[:len_curr_word] == self.current_sentence:    # If string entered by user matches with any of the strings in data dictionary, then add it to temporary list
+                if key[:len_curr_sentence] == self.current_sentence:    # If string entered by user matches with any of the strings in data dictionary, then add it to temporary list
                     curr_search_list.append((key,value))
             sorted_curr_search_list = sorted(curr_search_list,key=lambda x: x[1])   # Sort the list by frequency of search
             if len(curr_search_list) >= 3:                                          # If length is not greater than 3 then just return whatever we have, maybe 2 or 1 search result
