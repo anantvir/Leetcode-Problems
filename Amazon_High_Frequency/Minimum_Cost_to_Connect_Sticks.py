@@ -1,4 +1,9 @@
-"""Create a min heap. Pop top 2 elements from a heap, add them and add their sum to the total cost. Push their sum
+"""
+--------------------------------- GREEDY METHOD ------------------------------------------
+
+IMPORTANT--> No Dynamic Programming Required
+
+Create a min heap. Pop top 2 elements from a heap, add them and add their sum to the total cost. Push their sum
 i.e X+Y onto the heap. Keep doing this until len(heap array) > 1"""
 
 import heapq
