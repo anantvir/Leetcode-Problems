@@ -15,7 +15,6 @@ class MyQueue(object):
         """
         self.primary_stack = []
         self.secondary_stack = []
-        self.size = 0
         
     """Just append to the primary stack this acts ans queue as elements are added at the end"""
     def push(self, x):
@@ -25,7 +24,6 @@ class MyQueue(object):
         :rtype: None
         """
         self.primary_stack.append(x)
-        self.size += 1
     
     """To pop, first move all elements from primary to secondary stack. First check if secondary stack is empty.
     If is empty, then pop from primary and append to secondary until len(primary)==0
