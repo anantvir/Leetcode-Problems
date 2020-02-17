@@ -24,14 +24,14 @@ class Solution(object):
         sum = 0
         while stack:
             curr = stack.pop()
-            """------------ Check if popped node has a left child -----------------"""
+            """------------ Check if popped node has a left child and left is leaf -----------------"""
             if curr.left:
                 if curr.left.left == None and curr.right.right == None:
                     sum += curr.left.val
                 else:
                     # Push current on stack
                     stack.append(curr.left)
-            """------------ Check if popped node has a right child -----------------"""
+            """------------ Check if popped node has a right child and if right is not leaf then append to stack -----------------"""
             if curr.right:
                 if curr.right.right != None or curr.right.left != None:
                     stack.append(curr.right)
