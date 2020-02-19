@@ -24,7 +24,54 @@ class LinkedList:
         return newNode
 
 class Solution(object):
-    def reverseKGroup(self, head, k):
+    """---------------------------------- Own Solution ---------------------------------------"""
+
+    """All test cases passed (36 ms). Faster than 82 % python online submissions"""
+
+    def reverseKGroup(self,head,k):
+        prev_tail = ListNode(0)                     # Create a dummy Node with value 0
+        prev_tail.next = head                       
+        global_first = prev_tail                    # Return this in the end. Points to start of the list always
+        curr = prev_tail.next                       # Curr points to head initially
+        count = 0
+        begin = prev_tail.next                      # For each k group, it records the begin Node, so that we know where to start reversing
+        #prev_node
+        while curr != None:                         # Do until we traverse the entire list
+            count += 1
+            curr = curr.next
+            if count % k == 0:                      # If count is a multiple of k
+                curr_tail = self.reverse2(begin,prev_tail,curr)         # Pass the sentinel nodes and the begin node to reverse them
+                begin = curr_tail.next
+                prev_tail = curr_tail
+        return global_first.next
+
+    """
+    This function takes 2 sentinel nodes begin and end which cover the entire list we want to sort. Example if this list is
+    1->2->3->4->5 and we want to sort 2,3,4 to be 4->3->2, then begin = 1 and end = 5, head = 1. This then returns last node
+    in the sorted list which has been connected to the last sentinel(The connection of this sorted k group to the entire
+    linked list is made inside this function). In this case it returns 2 because the sorted list is 4->3->2 and current tail
+    of this sorted group is given by 2. This 2 has already been connected to next 5 inside the function
+    """
+    def reverse2(self,head,begin,end):
+        prev = begin
+        first = prev
+        second = prev.next
+        curr = head
+        next = None
+        while curr != end:
+            next = curr.next
+            curr.next = prev
+            prev = curr
+            curr = next
+        """Connect the sorted k group to rest of the list. It connects tail of previous sorted k group"""
+        first.next = prev           # Connect with previous sorted k group
+        second.next = end           # Connect current sorted k group with the rest of the list. i.e connect to the element next to the tail of this sorted group
+        return second
+
+    """-------------------------------------------------------------------------------"""
+
+    """--------------------- Leetcode Solution ------------------------------"""
+    def reverseKGroup2(self, head, k):
         """
         :type head: ListNode
         :type k: int
