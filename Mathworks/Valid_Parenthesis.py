@@ -1,33 +1,35 @@
-"""Approach --> If its an opening bracket then push it onto the stack. When we encounter
-a closing bracket, pop an item from the stack and check if the closing bracket we encountered
-is actually the closing bracket of the item we popped from the stack from the
-op_clos_dict which is mapping of correct open and close brackets. If the closing bracket
-we encountered is not the correct one then no need to check further just return False
-"""
 class Solution(object):
     def isValid(self, s):
         """
         :type s: str
         :rtype: bool
         """
-        if len(s) == 0 or s == ' ':
-            return True
 
-        op_clos_dict = {
-            '(':')',
-            '[':']',
-            '{':'}'
-        }
-        opeing_brackets = ['(','[','{']
+        # The stack to keep track of opening brackets.
         stack = []
-        for i in range(len(s)):
-            if s[i] in opeing_brackets:
-                stack.append(s[i])
-            else:
-                clos_br = stack.pop()
-                if op_clos_dict[clos_br] != s[i]:
-                    return False
-        return True
 
-s= Solution()
-print(s.isValid(' #'))
+        # Hash map for keeping track of mappings. This keeps the code very clean.
+        # Also makes adding more types of parenthesis easier
+        mapping = {")": "(", "}": "{", "]": "["}
+
+        # For every bracket in the expression.
+        for char in s:
+
+            # If the character is an closing bracket
+            if char in mapping:
+
+                # Pop the topmost element from the stack, if it is non empty
+                # Otherwise assign a dummy value of '#' to the top_element variable
+                top_element = stack.pop() if stack else '#'
+
+                # The mapping for the opening bracket in our hash and the top
+                # element of the stack don't match, return False
+                if mapping[char] != top_element:
+                    return False
+            else:
+                # We have an opening bracket, simply push it onto the stack.
+                stack.append(char)
+
+        # In the end, if the stack is empty, then we have a valid expression.
+        # The stack won't be empty for cases like ((()
+        return not stack
