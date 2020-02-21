@@ -15,7 +15,7 @@ class Solution(object):
                         res.append((nums[i],nums[j],nums[k]))
         return res
 
-    """------------------ Efficient O(n^3) ---------------"""
+    """------------------ Efficient O(n^2) ---------------"""
     """MAIN IDEA ---> Select 1 element from nums and run 2 sum smaller on the remaining array. Do this for n-2 elements in the nums array."""
     def ThreeSumSmaller_Optimized(self,nums,target):
         count = 0
