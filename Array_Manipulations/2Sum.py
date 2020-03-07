@@ -24,22 +24,18 @@ print(Two_Sum(a,-2))
 # Use hashtable to store the elements of array as keys and their indices as values so that when we 
 # search for target - a[i], we check if target - a[i] is available in hashtable. If yes, then
 # return its index i.e j, combine it with i and return list [i,j]
+# Also check if  target - a[i] should not be i itself. Because we can use the same element twice
 
-def Two_Sum_Hashtable(a,target):
-    dic = dict()
-    a = sorted(a)
-    lst = []
-    for i in range(len(a)):
-        dic[a[i]] = i
-    for i in range(len(a)-1):
-        if a[i] != a[i-1]:
-            if target - a[i] in dic.keys() and target - a[i] != a[i]:
-                index = dic[target - a[i]]
-                if [i,index] not in lst:
-                    """to remove duplicates. e.g if index [3,4] give sum = 1, then index [4,3] will also give sum 1. To prevent this we set i<index, which means s<e in below link"""
-                    if i < index:               # IMPORTANT >> https://leetcode.com/problems/3sum/discuss/7498/Python-solution-with-detailed-explanation
-                        lst.append([i,index])
-    return lst
+def Two_Sum_New(a,target):
+    n = len(a)
+    hashtable = dict()
+    for i in range(n):
+        hashtable[a[i]] = i
+    for i in range(n):
+        to_find = target - a[i]
+        if to_find in hashtable and hashtable[to_find] != i:
+            return [i,hashtable[to_find]]
 
-print(Two_Sum_Hashtable(a,2))
+nums = [3,2,4]
+print(Two_Sum_New(nums,6))
             
