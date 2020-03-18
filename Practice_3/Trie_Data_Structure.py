@@ -31,6 +31,24 @@ class Trie:
             curr.children[word[idx]] = newTrieNode
         self.insert_recursive(word,idx+1,newTrieNode)
 
+    """-------------------------------- Search (Iterative) ----------------------------------------"""
+    def search_iterative(self,word):
+        curr = self.root
+        for i in range(len(word)):
+            if word[i] in curr.children:
+                curr = curr.children[word[i]]
+            else:
+                return False
+        return curr.endOfWord
+    
+    """-------------------------------- Search (Recursive) ----------------------------------------"""
+    def search_recursive(self,word,curr,idx):
+        if idx == len(word):
+            return curr.endOfWord
+        curr = curr.children[word[idx]]
+        if curr == None:
+            return False
+        return self.search_recursive(word,curr,idx+1)
     
 
 t = Trie()
@@ -39,3 +57,6 @@ t.insert_recursive('abgl',0,t.root)
 t.insert_recursive('cdf',0,t.root)
 t.insert_recursive('abcd',0,t.root)
 t.insert_recursive('lmn',0,t.root)
+
+
+print(t.search_iterative('abcd'))
