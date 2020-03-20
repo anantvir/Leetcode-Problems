@@ -1,43 +1,63 @@
 class Solution(object):
+    class TrieNode:
+        def __init__(self):
+            self.children = dict()
+            self.endOfWord = False
+    def __init__(self):
+        self.root = Solution.TrieNode()
+        self.global_list = []
+    
+    def insert_in_trie(self,word):
+        curr = self.root
+        for i in range(len(word)):
+            if word[i] in curr.children:
+                curr = curr.children[word[i]]
+            else:
+                newNode = Solution.TrieNode()
+                curr.children[word[i]] = newNode
+                curr = curr.children[word[i]]
+        curr.children['EOW'] = word
+        curr.endOfWord = True
+
     def findWords(self, grid, words):
         """
         :type board: List[List[str]]
         :type words: List[str]
         :rtype: List[str]
         """
+        def build_trie(grid,words):
+            for word in words:
+                self.insert_in_trie(word)
+        build_trie(grid,words)
         nr = len(grid)
         nc = len(grid[0])
-        char_dict = dict()
-        for word in words:
-            char_dict[word[0]] = word
-        global_set = set()
         for r in range(nr):
             for c in range(nc):
-                if grid[r][c] in char_dict:
-                    print(char_dict[grid[r][c]])
-                    found = self.dfs(grid,r,c,0,char_dict[grid[r][c]])
-                    if found == True:
-                        global_set.add(char_dict[grid[r][c]])
-        if len(global_set) > 0:
-            return list(global_set)
-        else:
-            return []
+                if grid[r][c] in self.root.children:
+                    self.backtracking(grid,self.root,r,c)
+        return self.global_list
+    
+    def backtracking(self,grid,prev_node,r,c):
+        curr = prev_node.children[grid[r][c]]
+        word = curr.children.pop("EOW",False)
+        if word:
+            self.global_list.append(word)  
+        letter = grid[r][c]
+        grid[r][c] = 'V'                                # mark visited
+        nr = len(grid)
+        nc = len(grid[0])
+        for nbr_r,nbr_c in [(r+1,c),(r-1,c),(r,c+1),(r,c-1)]:
+            if nbr_r < 0 or nbr_r > nr-1 or nbr_c < 0 or nbr_c > nc-1:
+                continue
+            if not grid[nbr_r][nbr_c] in curr.children:
+                continue
+            self.backtracking(grid,curr,nbr_r,nbr_c)
+        grid[r][c] = letter                             # Restore the character where we marked visited
 
-    def dfs(self,grid,r,c,idx,word):
-        if idx == len(word):
-            return True
-        nr,nc = len(grid),len(grid[0])
-        if r < 0 or r > nr-1 or c < 0 or c > nc-1 or grid[r][c] == 'V' or grid[r][c] != word[idx]:
-            return False
-        temp = grid[r][c]
-        grid[r][c] = 'V'
-        found = self.dfs(grid,r+1,c,idx+1,word) or self.dfs(grid,r-1,c,idx+1,word) or  self.dfs(grid,r,c+1,idx+1,word) or self.dfs(grid,r,c-1,idx+1,word)
-        grid[r][c] = temp
-        return found
+grid = [["a","a"]]
+words = ["a"]
 
-grid = [["a","b"],["c","d"]]
-words = ["ab","cb","ad","bd","ac","ca","da","bc","db","adcb","dabc","abb","acb"]
- 
+#words = ["oath","pea","eat","rain"]
 s = Solution()
 print(s.findWords(grid,words))
 
