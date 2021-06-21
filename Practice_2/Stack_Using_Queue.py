@@ -33,7 +33,7 @@ class MyStack(object):
         res = self.Q1.popleft()                         # Deque Operation
         temp = self.Q1
         self.Q1 = self.Q2
-        self.Q2 = self.Q1
+        self.Q2 = temp
         return res
 
     def top(self):

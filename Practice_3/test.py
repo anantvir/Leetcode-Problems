@@ -1,6 +1,7 @@
-import bisect
 
-a = [(10,'love'),(20,'high'),(20,'jigh'),(20,'ligh')]
-b = [2,3,4,4,4,6,7,8]
+import numpy as np
 
-print(bisect.bisect(a,(20,'iigh')))
+
+b = [[1,2,3],[5,6,7],[8,9,0]]
+a = np.array(b)
+print(a)

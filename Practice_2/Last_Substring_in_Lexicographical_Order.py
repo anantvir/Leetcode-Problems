@@ -50,4 +50,4 @@ class Solution(object):
         return s[i:]      
 
 s = Solution()
-print(s.lastSubstring2('tcotdetco'))
+print(s.lastSusbtring2('cacacb'))
